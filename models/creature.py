@@ -1,13 +1,13 @@
 from abc import ABC, abstractmethod
 
 class Creature(ABC):
-    def __init__(self, name, max_health, base_hunger, base_energy, base_happiness):
+    def __init__(self, name, max_health, hunger, energy, happiness):
         self.name = name
         self.max_health = max_health
         self.health = max_health
-        self.hunger = base_hunger
-        self.energy = base_energy
-        self.happiness = base_happiness
+        self.hunger = hunger
+        self.energy = energy
+        self.happiness = happiness
         self.age = 0
         self.is_sick = False
         self.stage = "bébé"

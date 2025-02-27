@@ -1,25 +1,25 @@
 from models.creature import Creature
 
 
-class Kitten(Creature):
-    def __init__(self, name):
-        super().__init__(name, max_health=80, base_hunger=60, base_energy=90, base_happiness=80)
-
-    def make_sound(self):
-        return "Miaou!"
-
-
 class Puppy(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=100, base_hunger=70, base_energy=100, base_happiness=90)
+        super().__init__(name, max_health=100, hunger=70, energy=100, happiness=90)
 
     def make_sound(self):
         return "Wouf!"
 
 
+class Kitten(Creature):
+    def __init__(self, name):
+        super().__init__(name, max_health=80, hunger=60, energy=90, happiness=60)
+
+    def make_sound(self):
+        return "Miaou!"
+
+
 class Dragon(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=150, base_hunger=80, base_energy=70, base_happiness=60)
+        super().__init__(name, max_health=200, hunger=80, energy=70, happiness=60)
 
     def make_sound(self):
         return "Groar!"
@@ -27,7 +27,7 @@ class Dragon(Creature):
 
 class Bunny(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=70, base_hunger=50, base_energy=110, base_happiness=85)
+        super().__init__(name, max_health=70, hunger=50, energy=110, happiness=85)
 
     def make_sound(self):
         return "Sniff sniff!"
@@ -35,7 +35,7 @@ class Bunny(Creature):
 
 class Hamster(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=60, base_hunger=55, base_energy=120, base_happiness=80)
+        super().__init__(name, max_health=60, hunger=55, energy=120, happiness=80)
 
     def make_sound(self):
         return "Squeak!"
@@ -43,7 +43,7 @@ class Hamster(Creature):
 
 class FoxCub(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=85, base_hunger=65, base_energy=95, base_happiness=75)
+        super().__init__(name, max_health=85, hunger=65, energy=95, happiness=75)
 
     def make_sound(self):
         return "Yip yip!"
@@ -51,7 +51,7 @@ class FoxCub(Creature):
 
 class Penguin(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=90, base_hunger=75, base_energy=70, base_happiness=85)
+        super().__init__(name, max_health=90, hunger=75, energy=70, happiness=85)
 
     def make_sound(self):
         return "Wenk wenk!"
@@ -59,7 +59,7 @@ class Penguin(Creature):
 
 class Panda(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=110, base_hunger=80, base_energy=60, base_happiness=90)
+        super().__init__(name, max_health=110, hunger=80, energy=60, happiness=90)
 
     def make_sound(self):
         return "Squee!"
@@ -67,7 +67,7 @@ class Panda(Creature):
 
 class BabyTurtle(Creature):
     def __init__(self, name):
-        super().__init__(name, max_health=120, base_hunger=40, base_energy=50, base_happiness=75)
+        super().__init__(name, max_health=120, hunger=40, energy=40, happiness=75)
 
     def make_sound(self):
         return "Chirp!"

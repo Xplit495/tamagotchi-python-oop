@@ -26,4 +26,4 @@ class Creature(ABC):
 
     @abstractmethod
     def make_sound(self):
-        pass
+        ...

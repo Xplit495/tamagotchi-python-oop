@@ -9,28 +9,28 @@ def init_creature():
     print("Bienvenue dans le menu de création de votre petit monstre !\n")
 
     creature_mapping = {
-        "Chaton": Kitten,
         "Chiot": Puppy,
+        "Chaton": Kitten,
+        "Dragon": Dragon,
         "Lapin": Bunny,
         "Hamster": Hamster,
         "Renardeau": FoxCub,
-        "Panda": Panda,
-        "Dragon": Dragon,
         "Pingouin": Penguin,
+        "Panda": Panda,
         "Bébé tortue": BabyTurtle
     }
-
     creature_choices = [
-        Choice(value="Chaton", name="Chaton - Petit chat joueur et câlin"),
         Choice(value="Chiot", name="Chiot - Petit chien énergique et loyal"),
+        Choice(value="Chaton", name="Chaton - Petit chat joueur et câlin"),
+        Choice(value="Dragon", name="Dragon - Bébé dragon adorable malgré ses petites flammes"),
         Choice(value="Lapin", name="Lapin - Lapin aux longues oreilles qui adore sauter"),
         Choice(value="Hamster", name="Hamster - Petit rongeur aux joues pleines de nourriture"),
         Choice(value="Renardeau", name="Renardeau - Bébé renard curieux et espiègle"),
-        Choice(value="Panda", name="Panda - Bébé panda gourmand et câlin"),
-        Choice(value="Dragon", name="Dragon - Bébé dragon adorable malgré ses petites flammes"),
         Choice(value="Pingouin", name="Pingouin - Petit pingouin maladroit sur terre mais agile dans l'eau"),
+        Choice(value="Panda", name="Panda - Bébé panda gourmand et câlin"),
         Choice(value="Bébé tortue", name="Bébé tortue - Tortue lente mais résistante"),
     ]
+
 
     while True:
         creature_type = inquirer.select(

@@ -4,32 +4,32 @@ def game_controller(creature):
     end_line = None
     match creature.__class__.__name__:
         case "Puppy":
-            start_line = 3
-            end_line = 12
+            start_line = 2
+            end_line = 13
         case "Kitten":
-            start_line = 16
-            end_line = 21
+            start_line = 15
+            end_line = 22
         case "Dragon":
-            start_line = 25
-            end_line = 35
+            start_line = 24
+            end_line = 36
         case "Bunny":
-            start_line = 39
-            end_line = 53
+            start_line = 38
+            end_line = 54
         case "Hamster":
-            start_line = 57
-            end_line = 71
+            start_line = 56
+            end_line = 72
         case "FoxCub":
-            start_line = 75
-            end_line = 89
+            start_line = 74
+            end_line = 90
         case "Penguin":
-            start_line = 93
-            end_line = 110
+            start_line = 92
+            end_line = 111
         case "Panda":
-            start_line = 114
-            end_line = 130
+            start_line = 113
+            end_line = 131
         case "BabyTurtle":
-            start_line = 134
-            end_line = 157
+            start_line = 133
+            end_line = 158
 
     with open("utils/ascii_art.txt", "r") as file:
         lines = file.readlines()

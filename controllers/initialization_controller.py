@@ -62,7 +62,7 @@ def init_creature():
     creature_class = creature_mapping[creature_type]
     creature = creature_class(name)
 
-    print("Créature créée avec succès!")
+    print(f"{creature.name} à été créé avec succès!")
     input("\nAppuyez sur Entrée pour continuer...")
     clear_terminal()
 

@@ -20,6 +20,7 @@ def game_controller(creature):
             print(f"Oh non! {creature.name} n'est plus de ce monde...")
             print(f"Il a vécu {creature.alive_days} jours.")
             input("Appuyez sur Entrée pour quitter...")
+            return
 
         display_creature_status(creature)
 

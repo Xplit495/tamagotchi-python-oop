@@ -19,4 +19,4 @@ if __name__ == '__main__':
         print_ascii_art(creature)
         game_controller(creature)
 
-    print(f"Merci d'avoir joué ! (Votre petit ({creature.name} va mourir vous êtes un monstre) :(")
+    print(f"Merci d'avoir joué !")

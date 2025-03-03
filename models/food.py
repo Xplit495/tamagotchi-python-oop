@@ -8,8 +8,6 @@ class Food(ABC):
         self.health_effect = health_effect
 
     @staticmethod
-    def informations(aliment):
-        if aliment.is_good_quality:
-            return f"{aliment.name} - Satiété: {aliment.satiety}, Effet sur la santé: +{aliment.health_effect}"
-
-        return f"{aliment.name} - Satiété: {aliment.satiety}, Effet sur la santé: -{aliment.health_effect}"
+    def get_info(food):
+        sign = "+" if food.is_good_quality else "-"
+        return f"{food.name} - Satiété: {food.satiety}, Effet sur la santé: {sign}{food.health_effect}"

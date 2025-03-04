@@ -1,6 +1,5 @@
 from models.food import Food
 
-# Aliments de bonne qualité (healthy)
 class Apple(Food):
     name = "Pomme"
     satiety = 3
@@ -71,7 +70,6 @@ class Banana(Food):
         super().__init__(self.name, self.satiety, self.is_good_quality, self.health_effect)
 
 
-# Aliments de mauvaise qualité (unhealthy)
 class Cake(Food):
     name = "Gâteau"
     satiety = 7

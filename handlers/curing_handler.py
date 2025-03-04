@@ -105,7 +105,6 @@ def hangman_game():
 
 
 def display_hangman(errors):
-    """Affiche le dessin du pendu selon le nombre d'erreurs"""
     stages = [
         """
 

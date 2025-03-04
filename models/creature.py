@@ -108,8 +108,8 @@ class Creature(ABC):
     def check_critical_status(self):
         alerts = []
 
-        CRITICAL_THRESHOLD = 0.2  # 20% du maximum
-        LOW_THRESHOLD = 0.3  # 30% du maximum
+        CRITICAL_THRESHOLD = 0.2
+        LOW_THRESHOLD = 0.3
 
         health_percentage = self.health / self.max_health
         if health_percentage <= CRITICAL_THRESHOLD:

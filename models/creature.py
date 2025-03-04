@@ -67,23 +67,43 @@ class Creature(ABC):
         self.is_sick = False
 
     def grow(self):
-        if self.alive_days == 10:
+        if self.alive_days == 20:
             self.stage = "enfant"
-        elif self.alive_days == 30:
+        elif self.alive_days == 50:
             self.stage = "adulte"
-        elif self.alive_days == 60:
+        elif self.alive_days == 100:
             self.stage = "mort"
             self.is_alive = False
 
     def time_pass(self):
-        self.starve(1)
+        hunger_loss = random.randint(1, 3)
+        self.starve(hunger_loss)
+
+        energy_loss = random.randint(1, 2)
+        self.energy = max(0, self.energy - energy_loss)
+
+        happiness_loss = random.randint(1, 2)
+        self.happiness = max(0, self.happiness - happiness_loss)
+
         self.alive_days += 1
         self.grow()
+
         sick_probability = random.randint(1, 100)
-        if 1 <= sick_probability <= 5 and not self.is_sick:
+        base_chance = 5
+
+        if self.hunger < self.max_hunger * 0.3:
+            base_chance += 3
+
+        if self.happiness < self.max_happiness * 0.3:
+            base_chance += 2
+
+        if 1 <= sick_probability <= base_chance and not self.is_sick:
             self.get_sick()
+
         if self.is_sick:
             self.damage(1)
+            self.energy = max(0, self.energy - 1)
+            self.happiness = max(0, self.happiness - 1)
 
     @abstractmethod
     def make_sound(self):

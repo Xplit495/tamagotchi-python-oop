@@ -1,3 +1,5 @@
+import time
+
 from InquirerPy import inquirer
 
 from handlers.curing_handler import handle_curing
@@ -22,25 +24,32 @@ def game_controller(creature):
             input("Appuyez sur Entrée pour quitter...")
             return
 
-        display_creature_status(creature)
+        for i in range (2):
+            clear_terminal()
+            display_creature_status(creature)
 
-        choice = display_menu(creature)
+            choice = display_menu(creature)
 
-        if choice == "feed":
-            handle_feeding(creature)
-        elif choice == "play":
-            handle_playing(creature)
-        elif choice == "sleep":
-            handle_sleeping(creature)
-        elif choice == "heal":
-            handle_healing(creature)
-        elif choice == "cure":
-            handle_curing(creature)
-        elif choice == "save":
-            save_game(creature)
-        elif choice == "quit":
-            if inquirer.confirm(
-                    message="Voulez-vous vraiment quitter ? Les progrès non sauvegardés seront perdus.").execute():
-                game_running = False
+            if choice == "feed":
+                handle_feeding(creature)
+            elif choice == "play":
+                handle_playing(creature)
+            elif choice == "sleep":
+                handle_sleeping(creature)
+            elif choice == "heal":
+                handle_healing(creature)
+            elif choice == "cure":
+                handle_curing(creature)
+            elif choice == "save":
+                save_game(creature)
+            elif choice == "quit":
+                if inquirer.confirm(
+                        message="Voulez-vous vraiment quitter ? Les progrès non sauvegardés seront perdus.").execute():
+                    game_running = False
+
+        clear_terminal()
+        print("Une journée passe...")
+        time.sleep(1)
+        creature.time_pass()
 
     return game_running

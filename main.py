@@ -13,7 +13,10 @@ if __name__ == '__main__':
     save_file = argument_parser()
     if save_file:
         print("Chargement de la partie...")
-        load_save_file(save_file)
+        creature = load_save_file(save_file)
+        if creature:
+            print_ascii_art(creature)
+            game_controller(creature)
     else:
         creature = init_creature()
         print_ascii_art(creature)

@@ -105,6 +105,39 @@ class Creature(ABC):
             self.energy = max(0, self.energy - 1)
             self.happiness = max(0, self.happiness - 1)
 
+    def check_critical_status(self):
+        alerts = []
+
+        CRITICAL_THRESHOLD = 0.2  # 20% du maximum
+        LOW_THRESHOLD = 0.3  # 30% du maximum
+
+        health_percentage = self.health / self.max_health
+        if health_percentage <= CRITICAL_THRESHOLD:
+            alerts.append(f"⚠️ CRITIQUE : {self.name} est gravement malade et a besoin de soins urgents !")
+        elif health_percentage <= LOW_THRESHOLD:
+            alerts.append(f"⚠️ ATTENTION : La santé de {self.name} est faible !")
+
+        hunger_percentage = self.hunger / self.max_hunger
+        if hunger_percentage <= CRITICAL_THRESHOLD:
+            alerts.append(f"⚠️ CRITIQUE : {self.name} est affamé et risque de mourir de faim !")
+        elif hunger_percentage <= LOW_THRESHOLD:
+            alerts.append(f"⚠️ ATTENTION : {self.name} a très faim !")
+
+        energy_percentage = self.energy / self.max_energy
+        if energy_percentage <= CRITICAL_THRESHOLD:
+            alerts.append(f"⚠️ CRITIQUE : {self.name} est complètement épuisé et doit dormir !")
+        elif energy_percentage <= LOW_THRESHOLD:
+            alerts.append(f"⚠️ ATTENTION : {self.name} est très fatigué !")
+
+        happiness_percentage = self.happiness / self.max_happiness
+        if happiness_percentage <= CRITICAL_THRESHOLD:
+            alerts.append(f"⚠️ CRITIQUE : {self.name} est déprimé et a besoin de jouer immédiatement !")
+        elif happiness_percentage <= LOW_THRESHOLD:
+            alerts.append(f"⚠️ ATTENTION : {self.name} est malheureux !")
+
+        return alerts
+    
+    
     @abstractmethod
     def make_sound(self):
         pass

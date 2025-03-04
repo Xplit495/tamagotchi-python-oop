@@ -6,8 +6,19 @@ from models.creature_types import Kitten, Puppy, Bunny, Hamster, FoxCub, Panda, 
 
 
 def init_creature():
+    """
+    Gère le processus de création d'une nouvelle créature.
+
+    Cette fonction guide l'utilisateur à travers le processus de sélection
+    du type de créature et de choix d'un nom, puis instancie et retourne
+    la créature créée.
+
+    Returns:
+        Creature: Une instance de la créature nouvellement créée
+    """
     print("Bienvenue dans le menu de création de votre petit monstre !\n")
 
+    # Dictionnaire associant les noms des créatures à leurs classes correspondantes
     creature_mapping = {
         "Chiot": Puppy,
         "Chaton": Kitten,
@@ -19,6 +30,8 @@ def init_creature():
         "Panda": Panda,
         "Bébé tortue": BabyTurtle
     }
+
+    # Liste des choix de créatures avec leurs descriptions pour le menu de sélection
     creature_choices = [
         Choice(value="Chiot", name="Chiot - Petit chien énergique et loyal"),
         Choice(value="Chaton", name="Chaton - Petit chat joueur et câlin"),
@@ -31,7 +44,7 @@ def init_creature():
         Choice(value="Bébé tortue", name="Bébé tortue - Tortue lente mais résistante"),
     ]
 
-
+    # Boucle pour la sélection du type de créature
     while True:
         creature_type = inquirer.select(
             message="Commencez par sélectionner le type de votre créature :",
@@ -40,11 +53,13 @@ def init_creature():
 
         print(f"Vous avez choisi un(e) {creature_type} !")
 
+        # Demande de confirmation du choix
         if inquirer.confirm(message="Confirmer votre choix ?").execute():
             clear_terminal()
             break
         clear_terminal()
 
+    # Boucle pour le choix du nom de la créature
     while True:
         name = inquirer.text(
             message=f"Quel nom souhaitez-vous donner à votre {creature_type} :",
@@ -54,11 +69,13 @@ def init_creature():
 
         print(f"Votre {creature_type} s'appellera donc {name} !")
 
+        # Demande de confirmation du nom
         if inquirer.confirm(message="Confirmer votre choix ?").execute():
             clear_terminal()
             break
         clear_terminal()
 
+    # Création de l'instance de la créature avec le type et le nom choisis
     creature_class = creature_mapping[creature_type]
     creature = creature_class(name)
 

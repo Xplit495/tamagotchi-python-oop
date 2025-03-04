@@ -12,8 +12,18 @@ from utils.clear_terminal import clear_terminal
 
 
 def handle_feeding(creature):
+    """
+    Gère le processus d'alimentation de la créature.
+
+    Cette fonction affiche un menu de nourriture, permet au joueur de choisir
+    un aliment, et applique les effets de cet aliment à la créature.
+
+    Args:
+        creature: L'objet créature à nourrir
+    """
     clear_terminal()
 
+    # Liste de tous les aliments disponibles classés par catégorie
     food_classes = [
         {"class": Apple, "category": "sain"},
         {"class": Chicken, "category": "sain"},
@@ -31,6 +41,7 @@ def handle_feeding(creature):
         {"class": ChipsSnack, "category": "malsain"}
     ]
 
+    # Construction du menu de sélection des aliments, commençant par les aliments sains
     food_choices = [Separator("=== Aliments sains ===")]
 
     for food_item in food_classes:
@@ -38,6 +49,7 @@ def handle_feeding(creature):
         if food_item["category"] == "sain":
             food_choices.append(Choice(value=food_class, name=food_class.get_info(food_class)))
 
+    # Ajout des aliments malsains après un séparateur
     food_choices.append(Separator(""))
     food_choices.append(Separator("=== Aliments malsains ==="))
 
@@ -46,13 +58,16 @@ def handle_feeding(creature):
         if food_item["category"] == "malsain":
             food_choices.append(Choice(value=food_class, name=food_class.get_info(food_class)))
 
+    # Demander au joueur de choisir un aliment
     selected_food_class = inquirer.select(
         message=f"Que voulez-vous donner à manger à {creature.name} ?",
         choices=food_choices
     ).execute()
 
+    # Instancier l'aliment choisi
     food = selected_food_class()
 
+    # Animation de l'alimentation
     clear_terminal()
     print(f"{creature.name} mange un(e) {food.name}...")
 
@@ -68,8 +83,10 @@ def handle_feeding(creature):
         print(" ", end="", flush=True)
     print()
 
+    # Appliquer les effets de l'aliment à la créature
     creature.feed(food)
 
+    # Afficher un message différent selon la qualité de l'aliment
     if food.is_good_quality:
         print(
             f"C'était délicieux et nutritif ! {creature.name} a gagné {food.satiety} points de satiété et {food.health_effect} points de santé.")
@@ -77,5 +94,6 @@ def handle_feeding(creature):
         print(
             f"Ce n'était pas très bon pour sa santé... {creature.name} a gagné {food.satiety} points de satiété mais a perdu {food.health_effect} points de santé.")
 
+    # La créature fait un son pour exprimer sa satisfaction
     creature.make_sound()
     input("\nAppuyez sur Entrée pour continuer...")

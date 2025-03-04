@@ -16,11 +16,23 @@ from utils.saving_game import save_game
 
 
 def game_controller(creature):
-    day_count = 0
+    """
+    Contrôleur principal du jeu qui gère la boucle de jeu et les interactions de l'utilisateur.
 
-    while True:
-        for i in range(2):
+    Cette fonction maintient la boucle de jeu principale, affiche l'état de la créature,
+    traite les choix du joueur et gère le passage du temps et les événements aléatoires.
 
+    Args:
+        creature: L'objet créature contrôlé par le joueur
+
+    Returns:
+        bool: False si le jeu se termine, pour indiquer à l'appelant que le jeu est terminé
+    """
+    day_count = 0  # Compteur de jours passés depuis le début de la partie
+
+    while True:  # Boucle principale du jeu
+        for i in range(2):  # Deux actions par jour
+            # Vérifier si la créature est encore en vie
             if not creature.is_alive:
                 clear_terminal()
                 print(f"Oh non! {creature.name} n'est plus de ce monde...")
@@ -28,11 +40,14 @@ def game_controller(creature):
                 input("Appuyez sur Entrée pour quitter...")
                 return False
 
+            # Afficher l'état actuel de la créature
             clear_terminal()
             display_creature_status(creature)
 
+            # Obtenir le choix d'action du joueur
             choice = display_menu(creature)
 
+            # Traiter le choix du joueur
             if choice == "feed":
                 handle_feeding(creature)
             elif choice == "play":
@@ -50,17 +65,23 @@ def game_controller(creature):
                         message="Voulez-vous vraiment quitter ? Les progrès non sauvegardés seront perdus.").execute():
                     return False
 
+        # Fin de la journée - passage du temps
         clear_terminal()
         print("Une journée passe...")
         time.sleep(1)
 
+        # Incrémenter le compteur de jours
         day_count += 1
+
+        # 50% de chance qu'un événement aléatoire se produise
         if random.random() < 0.5:
             display_random_event(creature)
             time.sleep(2)
 
+        # Appliquer les effets du passage du temps sur la créature
         creature.time_pass()
 
+        # Vérifier s'il y a des alertes critiques à afficher
         alerts = creature.check_critical_status()
 
         if alerts:
@@ -68,4 +89,4 @@ def game_controller(creature):
             print("\n=== ALERTES DE FIN DE JOURNÉE ===")
             for alert in alerts:
                 print(alert)
-            time.sleep(3)
+            time.sleep(3)  # Pause pour que le joueur puisse lire les alertes

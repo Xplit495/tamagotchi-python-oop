@@ -1,5 +1,15 @@
 from models.food import Food
 
+"""
+   Représente les aliments pour la créature virtuelle.
+
+   Attributs:
+   - name: Nom de l'aliment
+   - satiety: Niveau de satiété procuré
+   - is_good_quality: Qualité nutritive
+   - health_effect: Effet sur la santé
+"""
+
 class Apple(Food):
     name = "Pomme"
     satiety = 3
